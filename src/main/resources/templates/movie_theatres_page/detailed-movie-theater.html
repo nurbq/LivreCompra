@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Movie Theatres</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+</head>
+<body>
+
+<div th:replace="header :: header"></div>
+
+<!--<div class="container">-->
+<!--    <div class="card">-->
+<!--        <div class="card-body">-->
+<!--            <h5 class="card-subtitle" th:text="${movie.genre}">Movie Genre</h5>-->
+<!--            <p th:text="'Email Address: ' + ${movie.description}">Movie description </p>-->
+<!--            <a class="btn btn-primary" th:href="@{/movies/{movieId}/delete(movieId=${movie.id})}">Delete</a>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+<div class=" container">
+    <div class="about-movie container mt-32">
+        <div class="about-partner-top">
+            <div class="about-partner-group">
+                <div class="about-partner-poster">
+<!--                    <div class="poster-image"-->
+<!--                         url="https://images.adsttc.com/media/images/5f7d/feb4/63c0/1772/3f00/0340/newsletter/Marcus_Wend_3.jpg?1602092715"></div>-->
+                </div>
+            </div>
+            <div class="about-partner-data">
+                <div class="about-partner-title" th:text = "${movieTheatre.name}"></div>
+                <div class="about-partner-address" th:text = "${movieTheatre.address}"></div>
+                <div class="about-partner-max-seats" th:text = "${movieTheatre.maxSeats}"></div>
+
+            </div>
+        </div>
+        <div class="about-movie-content">
+            <div class="about-movie-desc tab-item-content">После 22:00 несовершеннолетние могут находиться в кинотеатре
+                только с родителями/опекунами при наличии документов на ребенка.
+            </div>
+        </div>
+        <div class="divider mt-24">
+            <div></div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+</body>
+</html>
