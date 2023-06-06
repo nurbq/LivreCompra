@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@AllArgsConstructor
 public class MovieController {
 
     private final MovieService movieService;
 
+    public MovieController(MovieService movieService) {
+        this.movieService = movieService;
+    }
 
     @GetMapping("/movies")
     public String getAllMovies(Model model) {
