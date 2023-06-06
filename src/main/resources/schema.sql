@@ -22,7 +22,7 @@ CREATE TABLE ticket (
                         movie_id INTEGER REFERENCES movie(id),
                         order_id INTEGER REFERENCES orders(id),
                         theater_id INTEGER REFERENCES movie_theater(id),
-                        spot VARCHAR(255),
+                        spot INTEGER,
                         isPurchased BOOLEAN
 );
 
@@ -67,4 +67,4 @@ CREATE TABLE movie_review (
                               user_id INTEGER REFERENCES users(id),
                               movie_id INTEGER REFERENCES movie(id),
                               review_text TEXT
-);
+                          );
