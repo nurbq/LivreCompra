@@ -30,7 +30,8 @@ CREATE TABLE ticket (
 CREATE TABLE movie_theater (
                                id SERIAL PRIMARY KEY,
                                name VARCHAR(255),
-                               address VARCHAR(255)
+                               address VARCHAR(255),
+                               max_seats INTEGER
 );
 
 CREATE TABLE movie_detail (
