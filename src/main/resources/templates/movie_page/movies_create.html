@@ -8,6 +8,9 @@
           integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 </head>
 <body>
+
+<div th:replace="header :: header"></div>
+
 <div class="container">
     <form class="row g-3" method="post" role="form" th:action="@{/movies/save}" th:object="${movie}">
         <div class="mb-3">
