@@ -9,17 +9,23 @@
 </head>
 <body>
 <div class="container">
-  <form method="post" role="form" th:action="@{/register}" th:object="${user}">
+  <div th:if="${param.fail}" class="alert alert-danger">
+    Username already exists.
+  </div>
+  <div th:if="${param.logout}" class="alert alert-success">
+    You have been logged out.
+  </div>
+  <form method="post" role="form" th:action="@{/register/save}" th:object="${user}">
     <div class="mb-3">
-      <label for="username" class="form-label">Email address</label>
+      <label for="userName" class="form-label">Username</label>
       <input
               type="text"
               class="form-control"
-              id="username"
-              name="username"
+              id="userName"
+              name="userName"
               th:field="*{userName}"
               >
-      <p th:if="${#fields.hasErrors('username')}" class="text-danger" th:errors="*{username}"></p>
+      <p th:if="${#fields.hasErrors('userName')}" class="text-danger" th:errors="*{userName}"></p>
 
       <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
     </div>

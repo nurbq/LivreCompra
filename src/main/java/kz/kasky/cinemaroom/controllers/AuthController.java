@@ -45,7 +45,7 @@ public class AuthController {
 
 
         if (existingUser != null && existingUser.getUserName() != null) {
-            result.reject("username", "There is already a user with this username");
+            return "redirect:/register?fail";
         }
 
 
@@ -57,7 +57,7 @@ public class AuthController {
 
         userService.saveUser(user);
 
-        return "redirect/movies?success";
+        return "redirect:/movies?success";
 
 
     }

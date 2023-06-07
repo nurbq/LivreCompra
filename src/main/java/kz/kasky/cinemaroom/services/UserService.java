@@ -28,9 +28,15 @@ public class UserService {
 
         user.setUserName(registrationDto.getUserName());
         user.setPassword(registrationDto.getPassword());
-        user.setRoles(Collections.singletonList(new Role()));
+
+        Role role = new Role();
+        role.setName("USER");
+        role.setUser(user);
+
 
         userRepository.save(user);
+        roleRepository.save(role);
+
     }
 
     public User findByUsername(String userName) {
