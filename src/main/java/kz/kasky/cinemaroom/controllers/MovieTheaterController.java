@@ -96,13 +96,5 @@ public class MovieTheaterController {
         return "redirect:/movieTheatres";
     }
 
-    @GetMapping("/search")
-    public String searchMovie(@RequestParam(value = "query") String query, Model model) {
-        List<MovieTheaterDto> movieTheaterDtoList = movieTheaterService.searchMovies(query);
-
-
-        model.addAttribute("movieTheatres", movieTheaterDtoList);
-        return "movie_theatres_page/movie-theatres-list";
-    }
 
 }

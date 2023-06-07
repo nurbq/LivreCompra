@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<div th:replace="header :: header"></div>
+<div th:replace="~{header :: header}"></div>
 
 <!--<div class="container">-->
 <!--    <div class="card">-->
@@ -33,10 +33,11 @@
                 </div>
             </div>
             <div class="about-partner-data">
-                <div class="about-partner-title" th:text = "${movieTheatre.name}"></div>
-                <div class="about-partner-address" th:text = "${movieTheatre.address}"></div>
-                <div class="about-partner-max-seats" th:text = "${movieTheatre.maxSeats}"></div>
-
+                <div class="about-partner-title" th:text = "${movieTheater.name}"></div>
+                <div class="about-partner-address" th:text = "${movieTheater.address}"></div>
+                <div class="about-partner-max-seats" th:text = "${movieTheater.maxSeats}"></div>
+                <a class="btn btn-primary" th:href="@{/movieTheatres/{movieTheaterId}/edit(movieTheaterId=${movieTheater.id})}">Edit</a>
+                <a class="btn btn-primary" th:href="@{/movieTheatres/{movieTheaterId}/delete(movieTheaterId=${movieTheater.id})}">Delete</a>
             </div>
         </div>
         <div class="about-movie-content">

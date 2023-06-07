@@ -9,11 +9,11 @@
 </head>
 <body>
 
-<div th:replace="header :: header"></div>
+<div th:replace="~{header :: header}"></div>
 
 <div class="container">
   <form class="row g-3" method="post" role="form"
-        th:action="@{/movieTheatres/{movieTheatresId}/edit(movieTheatredId=${movieTheater.id})}"
+        th:action="@{/movieTheatres/{movieTheaterId}/edit(movieTheaterId=${movieTheater.id})}"
         th:object="${movieTheater}">
     <div class="mb-3">
       <label for="name" class="form-label">Movie Theater Name</label>
@@ -49,7 +49,7 @@
       <p th:if="${#fields.hasErrors('maxSeats')}" class="text-danger" th:errors="*{maxSeats}"></p>
     </div>
     <div class="col-12">
-      <button type="submit" class="btn btn-primary">Create</button>
+      <button type="submit" class="btn btn-primary">Edit</button>
     </div>
   </form>
 </div>
