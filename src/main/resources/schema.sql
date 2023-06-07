@@ -19,10 +19,9 @@ CREATE TABLE orders (
 
 CREATE TABLE ticket (
                         id SERIAL PRIMARY KEY,
-                        movie_id INTEGER REFERENCES movie(id),
                         order_id INTEGER REFERENCES orders(id),
-                        theater_id INTEGER REFERENCES movie_theater(id),
-                        spot INTEGER,
+                        schedule_id INTEGER REFERENCES schedule(id),
+                        seat_number INTEGER,
                         isPurchased BOOLEAN
 );
 
