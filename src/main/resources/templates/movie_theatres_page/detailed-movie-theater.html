@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<div th:replace="header :: header"></div>
+<div th:replace="~{header :: header}"></div>
 
 <!--<div class="container">-->
 <!--    <div class="card">-->
@@ -33,10 +33,11 @@
                 </div>
             </div>
             <div class="about-partner-data">
-                <div class="about-partner-title" th:text = "${movieTheatre.name}"></div>
-                <div class="about-partner-address" th:text = "${movieTheatre.address}"></div>
-                <div class="about-partner-max-seats" th:text = "${movieTheatre.maxSeats}"></div>
-
+                <div class="about-partner-title" th:text = "${movieTheater.name}"></div>
+                <div class="about-partner-address" th:text = "${movieTheater.address}"></div>
+                <div class="about-partner-max-seats" th:text = "${movieTheater.maxSeats}"></div>
+                <a class="btn btn-primary" th:href="@{/movieTheatres/{movieTheaterId}/edit(movieTheaterId=${movieTheater.id})}">Edit</a>
+                <a class="btn btn-primary" th:href="@{/movieTheatres/{movieTheaterId}/delete(movieTheaterId=${movieTheater.id})}">Delete</a>
             </div>
         </div>
         <div class="about-movie-content">
@@ -48,6 +49,30 @@
             <div></div>
         </div>
     </div>
+
+    <div class="container">
+        <h1 class="text-center">Schedules</h1>
+
+        <table class="table">
+            <thead>
+            <th scope="col">Movie Name</th>
+            <th scope="col">Start Time</th>
+            <th scope="col">Finish Time</th>
+            </thead>
+            <tbody>
+            <tr th:each="schedule : ${schedules}">
+                <td th:text="${schedule.movie.name}"></td>
+                <td th:text="${schedule.startTime}"></td>
+                <td th:text="${schedule.finishTime}"></td>
+                <td>
+                    <a class="btn btn-primary" th:href="@{/schedules/{scheduleId}(scheduleId=${schedule.id})}">Details</a>
+                </td>
+                <td>
+                    <a class="btn btn-primary" th:href="@{/schedules/{scheduleId}/edit(scheduleId=${schedule.id})}">Edit</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
 </div>
 
 

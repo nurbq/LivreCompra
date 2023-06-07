@@ -1,7 +1,11 @@
 package kz.kasky.cinemaroom.models.dto;
 
 
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import kz.kasky.cinemaroom.models.entities.Movie;
+import kz.kasky.cinemaroom.models.entities.Order;
+import kz.kasky.cinemaroom.models.entities.Schedule;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,11 +20,9 @@ public class TicketDto {
 
     private Integer id;
 
-    private Movie movie;
+    private Order order;
 
-    private Integer orderId;
-
-    private Integer theaterId;
+    private Schedule schedule;
 
     private Integer spot;
 

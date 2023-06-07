@@ -18,15 +18,17 @@ public class Ticket {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "movie_id")
-    private Movie movie;
+    @JoinColumn(name = "order_id")
+    private Order order;
 
-    private Integer orderId;
+    @ManyToOne
+    @JoinColumn(name = "schedule_id")
+    private Schedule schedule;
 
-    private Integer theaterId;
 
     private Integer spot;
 
+    @Column(name = "ispurchased")
     private Boolean isPurchased;
 
 

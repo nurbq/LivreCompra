@@ -13,4 +13,6 @@ public interface MovieTheaterRepository extends JpaRepository<MovieTheater, Inte
 
     @Query("SELECT m FROM MovieTheater m WHERE m.name LIKE CASCADE('%', :query, '%')")
     List<MovieTheater> searchMovieTheater(String query);
+
+
 }

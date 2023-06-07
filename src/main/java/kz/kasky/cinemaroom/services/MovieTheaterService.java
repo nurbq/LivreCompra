@@ -109,7 +109,7 @@ public class MovieTheaterService {
     }
 
 
-    private MovieTheater mapToMovieTheater(MovieTheaterDto movieTheaterDto) {
+    public MovieTheater mapToMovieTheater(MovieTheaterDto movieTheaterDto) {
 
 
         return MovieTheater.builder()

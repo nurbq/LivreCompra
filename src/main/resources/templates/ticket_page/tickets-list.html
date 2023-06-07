@@ -8,29 +8,25 @@
           integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 </head>
 <body>
-<div th:replace="header :: header"></div>
+
+<div th:replace="~{header :: header}"></div>
 <div class="container">
     <h1 class="text-center">Movies</h1>
-<!--    <div>-->
-<!--        <form th:action="@{/movies/search}" class="form-inline my-2 my-lg-0 mb-3">-->
-
-<!--            <input name="query" class="form-control mr-sm-2 mb-5" type="search" placeholder="Search Movies" aria-label="Search" >-->
-
-<!--        </form>-->
-<!--    </div>-->
     <table class="table">
         <thead>
-        <th scope="col">Ticket</th>
-        <th scope="col">Movie</th>
-        <th scope="col">Theater</th>
-        <th scope="col">Actions</th>
-        <th scope="col">Edit</th>
+        <th scope="col">Movie Name</th>
+        <th scope="col">Order number</th>
+        <th scope="col">Theater name</th>
+        <th scope="col">Spot</th>
+        <th scope="col">Is Purchased</th>
         </thead>
         <tbody>
-        <tr th:each="movie : ${movies}">
-            <td th:text="${movie.name}">Name</td>
-            <td th:text="${movie.description}">Description</td>
-            <td th:text="${movie.genre}">Genre</td>
+        <tr th:each="ticket : ${tickets}">
+            <td th:text="${ticket.schedule.movie.name}"></td>
+            <td th:text="${ticket.schedule.movieTheater.name}"></td>
+            <td th:text="${ticket.order.id}"></td>
+            <td th:text="${ticket.spot}"></td>
+            <td th:text="${ticket.isPurchased}"></td>
             <td>
                 <a class="btn btn-primary" th:href="@{/movies/{movieId}(movieId=${movie.id})}">Details</a>
             </td>

@@ -3,8 +3,10 @@ package kz.kasky.cinemaroom.controllers;
 
 import jakarta.validation.Valid;
 import kz.kasky.cinemaroom.models.dto.MovieTheaterDto;
+import kz.kasky.cinemaroom.models.dto.ScheduleDto;
 import kz.kasky.cinemaroom.models.entities.MovieTheater;
 import kz.kasky.cinemaroom.services.MovieTheaterService;
+import kz.kasky.cinemaroom.services.ScheduleService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,9 +19,11 @@ import java.util.List;
 public class MovieTheaterController {
 
     private final MovieTheaterService movieTheaterService;
+    private final ScheduleService scheduleService;
 
-    public MovieTheaterController(MovieTheaterService movieTheaterService) {
+    public MovieTheaterController(MovieTheaterService movieTheaterService, ScheduleService scheduleService) {
         this.movieTheaterService = movieTheaterService;
+        this.scheduleService = scheduleService;
     }
 
 
@@ -37,8 +41,10 @@ public class MovieTheaterController {
     @GetMapping(path = "/{id}")
     public String getMovieTheaterById(@PathVariable("id") Integer id, Model model) {
         MovieTheaterDto movieTheaterDto = movieTheaterService.getMovieTheaterById(id);
+        List<ScheduleDto> scheduleDtos = scheduleService.getScheduleByMovieTheaterId(id);
 
         model.addAttribute("movieTheater", movieTheaterDto);
+        model.addAttribute("schedules", scheduleDtos);
 
         return "movie_theatres_page/detailed-movie-theater";
     }
@@ -96,13 +102,5 @@ public class MovieTheaterController {
         return "redirect:/movieTheatres";
     }
 
-    @GetMapping("/search")
-    public String searchMovie(@RequestParam(value = "query") String query, Model model) {
-        List<MovieTheaterDto> movieTheaterDtoList = movieTheaterService.searchMovies(query);
-
-
-        model.addAttribute("movieTheatres", movieTheaterDtoList);
-        return "movie_theatres_page/movie-theatres-list";
-    }
 
 }

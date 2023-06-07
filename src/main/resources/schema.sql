@@ -26,6 +26,14 @@ CREATE TABLE users (
                        password VARCHAR(255) NOT NULL
 );
 
+CREATE TABLE movie (
+                       id SERIAL PRIMARY KEY,
+                       name VARCHAR(255),
+                       description VARCHAR(255),
+                       genre VARCHAR(255),
+                       details_id INTEGER REFERENCES movie_detail(id)
+);
+
 CREATE TABLE roles (
                        id SERIAL PRIMARY KEY,
                        name VARCHAR(255) NOT NULL,
@@ -41,10 +49,9 @@ CREATE TABLE orders (
 
 CREATE TABLE ticket (
                         id SERIAL PRIMARY KEY,
-                        movie_id INTEGER REFERENCES movie(id),
                         order_id INTEGER REFERENCES orders(id),
-                        theater_id INTEGER REFERENCES movie_theater(id),
-                        spot INTEGER,
+                        schedule_id INTEGER REFERENCES schedule(id),
+                        seat_number INTEGER,
                         isPurchased BOOLEAN
 );
 
