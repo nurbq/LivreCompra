@@ -26,6 +26,7 @@ public class ScheduleService {
 
         Movie movie = movieRepository.findById(movieId).get();
 
+
         Schedule schedule = mapToSchedule(scheduleDto);
 
 
