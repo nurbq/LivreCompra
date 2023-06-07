@@ -4,6 +4,14 @@ CREATE TABLE users (
                        password VARCHAR(255) NOT NULL
 );
 
+CREATE TABLE movie (
+                       id SERIAL PRIMARY KEY,
+                       name VARCHAR(255),
+                       description VARCHAR(255),
+                       genre VARCHAR(255),
+                       details_id INTEGER REFERENCES movie_detail(id)
+);
+
 CREATE TABLE roles (
                        id SERIAL PRIMARY KEY,
                        name VARCHAR(255) NOT NULL,
@@ -40,13 +48,7 @@ CREATE TABLE movie_detail (
                               director VARCHAR(255)
 );
 
-CREATE TABLE movie (
-                       id SERIAL PRIMARY KEY,
-                       name VARCHAR(255),
-                       description VARCHAR(255),
-                       genre VARCHAR(255),
-                       details_id INTEGER REFERENCES movie_detail(id)
-);
+
 
 
 CREATE TABLE schedule (

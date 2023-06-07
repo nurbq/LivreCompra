@@ -6,8 +6,6 @@
 //import kz.kasky.cinemaroom.models.entities.Ticket;
 //import kz.kasky.cinemaroom.repositories.MovieRepository;
 //import kz.kasky.cinemaroom.repositories.TicketRepository;
-//import lombok.AllArgsConstructor;
-//import lombok.NoArgsConstructor;
 //import org.springframework.http.HttpStatus;
 //import org.springframework.stereotype.Service;
 //import org.springframework.web.server.ResponseStatusException;
@@ -73,28 +71,24 @@
 //    }
 //
 //
-////    private TicketDto mapToTicketDto(Ticket ticket) {
-////
-////
-////        return TicketDto.builder()
-////                .id(ticket.getId())
-////                .movie(ticket.getMovie())
-////                .orderId(ticket.getOrderId())
-////                .theaterId(ticket.getTheaterId())
-////                .spot(ticket.getSpot())
-////                .isPurchased(ticket.getIsPurchased())
-////                .build();
-////    }
-////
-////    private Ticket mapToTicket(TicketDto ticketDto) {
-////
-////        return Ticket.builder()
-////                .id(ticketDto.getId())
-////                .movie(ticketDto.getMovie())
-////                .orderId(ticketDto.getOrderId())
-////                .theaterId(ticketDto.getTheaterId())
-////                .spot(ticketDto.getSpot())
-////                .isPurchased(ticketDto.getIsPurchased())
-////                .build();
-////    }
+//    private TicketDto mapToTicketDto(Ticket ticket) {
+//
+//
+//        return TicketDto.builder()
+//                .id(ticket.getId())
+//                .schedule(ticket.getSchedule())
+//                .spot(ticket.getSpot())
+//                .isPurchased(ticket.getIsPurchased())
+//                .build();
+//    }
+//
+//    private Ticket mapToTicket(TicketDto ticketDto) {
+//
+//        return Ticket.builder()
+//                .id(ticketDto.getId())
+//                .schedule(ticketDto.getSchedule())
+//                .spot(ticketDto.getSpot())
+//                .isPurchased(ticketDto.getIsPurchased())
+//                .build();
+//    }
 //}

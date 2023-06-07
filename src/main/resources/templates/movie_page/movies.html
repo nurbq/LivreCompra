@@ -8,9 +8,13 @@
           integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 </head>
 <body>
-<div th:replace="header :: header"></div>
+<div th:replace="~{header :: header}"></div>
 <div class="container">
     <h1 class="text-center">Movies</h1>
+    <div th:if="${param.success}" class="alert alert-success">
+        You are registered
+    </div>
+
     <div>
         <form th:action="@{/movies/search}" class="form-inline my-2 my-lg-0 mb-3">
 

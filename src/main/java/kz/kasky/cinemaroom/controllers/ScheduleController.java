@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RestController("/schedules")
+@RequestMapping("/schedules")
 public class ScheduleController {
 
     private final ScheduleService scheduleService;
@@ -29,6 +29,16 @@ public class ScheduleController {
         this.scheduleService = scheduleService;
         this.movieService = movieService;
         this.movieTheaterService = movieTheaterService;
+    }
+
+    @GetMapping
+    public String allSchedules(Model model) {
+
+        List<ScheduleDto> scheduleDtos = scheduleService.getAllSchedules();
+
+        model.addAttribute("schedules", scheduleDtos);
+
+        return "schedules_page/schedule-list";
     }
 
 
@@ -48,17 +58,19 @@ public class ScheduleController {
 
 
     @PostMapping("/create")
-    public String saveTicket(@Valid @ModelAttribute("schedule") ScheduleDto ticketDto,
+    public String saveTicket(@Valid @ModelAttribute("schedule") ScheduleDto scheduleDto,
                              BindingResult bindingResult, Model model) {
 
+        scheduleService.createSchedule(scheduleDto);
+
         if (bindingResult.hasErrors()) {
-            model.addAttribute("ticket", ticketDto);
-            return "ticket_page/ticket_create";
+            model.addAttribute("schedule", scheduleDto);
+            return "schedules_page/schedule-create";
         }
 
 
 
 
-        return "redirect:/tickets";
+        return "redirect:/schedules";
     }
 }

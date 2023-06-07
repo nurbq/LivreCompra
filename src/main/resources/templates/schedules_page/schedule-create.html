@@ -12,43 +12,72 @@
 <div th:replace="~{header :: header}"></div>
 
 <div class="container">
-    <form class="row g-3" method="post" role="form" th:action="@{/movieTheatres/save}" th:object="${movieTheater}">
+
+    <form class="row g-3" method="post" role="form"
+          th:action="@{/schedules/create}"
+          th:object="${schedule}">
+
         <div class="mb-3">
-            <label for="name" class="form-label">Movie Theater Name</label>
-            <input
-                    type="text"
-                    class="form-control"
-                    id="name"
-                    name="name"
-                    th:field="*{name}"
-                    placeholder="Movie Theater Name">
-            <p th:if="${#fields.hasErrors('name')}" class="text-danger" th:errors="*{name}"></p>
+            <label for="movie">Movie:</label>
+            <select
+                    id="movie"
+                    name="movie.id"
+                    th:field="*{movie.id}">
+                <option value="">Select a movie</option>
+                <th:block th:each="movie : ${movies}">
+                    <option th:value="${movie.id}" th:text="${movie.name}"></option>
+                </th:block>
+            </select>
         </div>
+
+        <br><br>
+
         <div class="mb-3">
-            <label for="address" class="form-label">Address</label>
-            <input
-                    type="text"
-                    class="form-control"
-                    id="address"
-                    name="address"
-                    th:field="*{address}"
-                    placeholder="Address">
-            <p th:if="${#fields.hasErrors('address')}" class="text-danger" th:errors="*{address}"></p>
+            <label for="movieTheater">Movie Theatres:</label>
+            <select
+                    id="movieTheater"
+                    name="movieTheater.id"
+                    th:field="*{movieTheater.id}">
+                <option value="">Select a Movie Theater</option>
+                <th:block th:each="movieTheater : ${movieTheatres}">
+                    <option th:value="${movieTheater.id}" th:text="${movieTheater.name}"></option>
+                </th:block>
+            </select>
         </div>
-        <div class="mb-6">
-            <label for="maxSeats" class="form-label">Maximum Seats</label>
+
+        <br><br>
+        <div class="mb-3">
+            <label for="startTime" class="form-label">Start Time:</label>
             <input
-                    type="number"
-                    class="form-control"
-                    id="maxSeats"
-                    name="maxSeats"
-                    th:field="*{maxSeats}"
-                    placeholder="Maximum Seats">
-            <p th:if="${#fields.hasErrors('maxSeats')}" class="text-danger" th:errors="*{maxSeats}"></p>
+                    type="datetime-local"
+                    id="startTime"
+                    name="startTime"
+                    th:field="*{startTime}"
+                    placeholder="Start Time"
+            >
+            <p th:if="${#fields.hasErrors('startTime')}" class="text-danger" th:errors="*{startTime}"></p>
+            <br><br>
+
         </div>
+
+        <div class="mb-3">
+
+            <label for="finishTime">Finish Time:</label>
+            <input
+                    type="datetime-local"
+                    id="finishTime"
+                    name="finishTime"
+                    th:field="*{finishTime}"
+                    placeholder="Finish Time"
+            >
+            <p th:if="${#fields.hasErrors('finishTime')}" class="text-danger" th:errors="*{finishTime}"></p>
+
+        </div>
+        <br><br>
         <div class="col-12">
             <button type="submit" class="btn btn-primary">Create</button>
         </div>
+
     </form>
 </div>
 

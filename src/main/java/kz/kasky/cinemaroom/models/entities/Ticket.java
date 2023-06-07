@@ -28,6 +28,7 @@ public class Ticket {
 
     private Integer spot;
 
+    @Column(name = "ispurchased")
     private Boolean isPurchased;
 
 
