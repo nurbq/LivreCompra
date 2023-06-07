@@ -30,5 +30,5 @@ public class MovieDto {
 
     private MovieDetail movieDetail;
 
-    private Set<Schedule> movieTheaters;
+    private Set<Schedule> schedules;
 }

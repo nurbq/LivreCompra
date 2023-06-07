@@ -4,7 +4,6 @@ package kz.kasky.cinemaroom.controllers;
 import jakarta.validation.Valid;
 import kz.kasky.cinemaroom.models.dto.MovieDto;
 import kz.kasky.cinemaroom.models.dto.ScheduleDto;
-import kz.kasky.cinemaroom.models.entities.Movie;
 import kz.kasky.cinemaroom.services.MovieService;
 import kz.kasky.cinemaroom.services.ScheduleService;
 import org.springframework.stereotype.Controller;
@@ -49,7 +48,7 @@ public class MovieController {
 
     @GetMapping("/movies/form")
     public String createMovieForm(Model model) {
-        Movie movie = new Movie();
+        MovieDto movie = new MovieDto();
         model.addAttribute("movie", movie);
         return "movie_page/movies_create";
     }

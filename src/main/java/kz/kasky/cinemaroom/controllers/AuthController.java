@@ -28,6 +28,8 @@ public class AuthController {
         return "login";
     }
 
+
+
     @GetMapping("/register")
     public String getRegisterForm(Model model) {
         RegistrationDto user = new RegistrationDto();
@@ -45,19 +47,19 @@ public class AuthController {
 
 
         if (existingUser != null && existingUser.getUserName() != null) {
-            result.reject("username", "There is already a user with this username");
+            return "redirect:/register?fail";
         }
-
 
 
         if (result.hasErrors()) {
             model.addAttribute("user", user);
+
             return "register";
         }
 
         userService.saveUser(user);
 
-        return "redirect/movies?success";
+        return "redirect:/movies?success";
 
 
     }

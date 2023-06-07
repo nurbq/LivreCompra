@@ -104,12 +104,11 @@ public class MovieTheaterService {
                 .name(movieTheater.getName())
                 .address(movieTheater.getAddress())
                 .maxSeats(movieTheater.getMaxSeats())
-                .movies(movieTheater.getMovies())
                 .build();
     }
 
 
-    public MovieTheater mapToMovieTheater(MovieTheaterDto movieTheaterDto) {
+    private MovieTheater mapToMovieTheater(MovieTheaterDto movieTheaterDto) {
 
 
         return MovieTheater.builder()
@@ -117,7 +116,6 @@ public class MovieTheaterService {
                 .name(movieTheaterDto.getName())
                 .address(movieTheaterDto.getAddress())
                 .maxSeats(movieTheaterDto.getMaxSeats())
-                .movies(movieTheaterDto.getMovies())
                 .build();
     }
 }

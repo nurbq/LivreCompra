@@ -35,7 +35,5 @@ public class MovieTheaterDto {
     @Digits(integer = 3, fraction = 0, message = "Value must be an integer")
     private Integer maxSeats;
 
-    private Set<Schedule> movies;
-
 
 }

@@ -30,7 +30,7 @@ public class MovieTheater {
 
 
     @OneToMany(mappedBy = "movieTheater")
-    private Set<Schedule> movies;
+    private Set<Schedule> movieTheaterSchedules;
 
 
 

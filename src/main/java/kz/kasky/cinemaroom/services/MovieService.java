@@ -88,20 +88,20 @@ public class MovieService {
     }
 
 
-    public Movie mapToMovie(MovieDto movieDto) {
+    private Movie mapToMovie(MovieDto movieDto) {
 
         Movie movie = new Movie();
         movie.setName(movieDto.getName());
         movie.setGenre(movieDto.getGenre());
         movie.setDescription(movieDto.getDescription());
         movie.setMovieDetail(movieDto.getMovieDetail());
-        movie.setMovieTheaters(movieDto.getMovieTheaters());
+        movie.setMovieSchedules(movieDto.getSchedules());
 
         return movie;
     }
 
 
-    public MovieDto mapToMovieDto(Movie movie) {
+    private MovieDto mapToMovieDto(Movie movie) {
 
 
         return MovieDto.builder()
@@ -110,7 +110,7 @@ public class MovieService {
                 .genre(movie.getGenre())
                 .description(movie.getDescription())
                 .movieDetail(movie.getMovieDetail())
-                .movieTheaters(movie.getMovieTheaters())
+                .schedules(movie.getMovieSchedules())
                 .build();
     }
 
