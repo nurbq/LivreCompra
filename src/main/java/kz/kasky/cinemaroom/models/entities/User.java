@@ -2,8 +2,18 @@ package kz.kasky.cinemaroom.models.entities;
 
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "users")
 public class User {
     @Id
@@ -16,27 +26,8 @@ public class User {
 
     private String password;
 
-    public Integer getInteger() {
-        return integer;
-    }
+    @OneToMany(mappedBy = "user")
+    private List<Role> roles;
 
-    public void setInteger(Integer integer) {
-        this.integer = integer;
-    }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }
