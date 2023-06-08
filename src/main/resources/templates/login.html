@@ -17,12 +17,12 @@
     </div>
     <form method="post" role="form" th:action="@{/login}">
         <div class="mb-3">
-            <label for="userName" class="form-label">Username</label>
+            <label for="username" class="form-label">Username</label>
             <input
                     type="text"
                     class="form-control"
-                    id="userName"
-                    name="userName"
+                    id="username"
+                    name="username"
             >
         </div>
         <div class="mb-3">
@@ -35,11 +35,8 @@
             >
 
         </div>
-<!--        <button class="btn-outline-secondary" th:href="@{/register}">-->
-<!--            Don't have an account already? Register here.-->
-<!--        </button>-->
         <a class="btn-outline-secondary" th:href="@{/register}">Register here</a>
-        <button type="submit" class="btn btn-primary" value="Log in">Log in</button>
+        <button type="submit" class="btn btn-primary" >Log in</button>
     </form>
 </div>
 

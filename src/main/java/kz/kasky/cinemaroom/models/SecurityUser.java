@@ -20,8 +20,8 @@ public class SecurityUser implements UserDetails {
         return user.getRoles().stream()
                 .map(role -> new SimpleGrantedAuthority(role.getName()))
                 .toList();
-    }
 
+    }
 
 
     @Override

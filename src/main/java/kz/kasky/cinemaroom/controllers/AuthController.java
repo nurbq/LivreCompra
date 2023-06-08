@@ -43,12 +43,12 @@ public class AuthController {
     public String getRegisterForm(@Valid @ModelAttribute("user") RegistrationDto user,
                                   BindingResult result, Model model) {
 
-        User existingUser = userService.findByUsername(user.getUserName());
+//        User existingUser = userService.findByUsername(user.getUserName());
 
 
-        if (existingUser != null && existingUser.getUserName() != null) {
-            return "redirect:/register?fail";
-        }
+//        if (existingUser != null && existingUser.getUserName() != null) {
+//            return "redirect:/register?fail";
+//        }
 
 
         if (result.hasErrors()) {

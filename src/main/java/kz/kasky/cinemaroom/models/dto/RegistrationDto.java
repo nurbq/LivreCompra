@@ -14,8 +14,8 @@ import lombok.NoArgsConstructor;
 public class RegistrationDto {
 
     private Integer id;
-    @NotEmpty
+    @NotEmpty(message = "Required")
     private String userName;
-    @NotEmpty
+    @NotEmpty(message = "Required")
     private String password;
 }
