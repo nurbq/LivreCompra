@@ -26,13 +26,7 @@ CREATE TABLE users (
                        password VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE movie (
-                       id SERIAL PRIMARY KEY,
-                       name VARCHAR(255),
-                       description VARCHAR(255),
-                       genre VARCHAR(255),
-                       details_id INTEGER REFERENCES movie_detail(id)
-);
+
 
 CREATE TABLE roles (
                        id SERIAL PRIMARY KEY,
@@ -46,6 +40,14 @@ CREATE TABLE orders (
                         order_time TIMESTAMP
 );
 
+CREATE TABLE schedule (
+                          id SERIAL PRIMARY KEY,
+                          movie_id INTEGER REFERENCES movie(id),
+                          movie_theater_id INTEGER REFERENCES movie_theater(id),
+                          start_time TIMESTAMP,
+                          finish_time TIMESTAMP
+);
+
 
 CREATE TABLE ticket (
                         id SERIAL PRIMARY KEY,
@@ -57,26 +59,3 @@ CREATE TABLE ticket (
 
 
 
-
-
-
-
-CREATE TABLE schedule (
-                          id SERIAL PRIMARY KEY,
-                          movie_id INTEGER REFERENCES movie(id),
-                          movie_theater_id INTEGER REFERENCES movie_theater(id),
-                          start_time TIMESTAMP,
-                          finish_time TIMESTAMP
-);
-
-
-
-
-
-
-CREATE TABLE movie_review (
-                              id SERIAL PRIMARY KEY,
-                              user_id INTEGER REFERENCES users(id),
-                              movie_id INTEGER REFERENCES movie(id),
-                              review_text TEXT
-);

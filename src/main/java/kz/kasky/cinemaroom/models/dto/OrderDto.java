@@ -1,7 +1,8 @@
-package kz.kasky.cinemaroom.models.entities;
+package kz.kasky.cinemaroom.models.dto;
 
 
-import jakarta.persistence.*;
+import kz.kasky.cinemaroom.models.entities.Ticket;
+import kz.kasky.cinemaroom.models.entities.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,25 +11,16 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Entity
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "orders")
-public class Order {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class OrderDto {
     private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
     private UserEntity userEntity;
 
-    @Column(name = "order_time")
     private LocalDateTime orderTime;
 
-    @OneToMany(mappedBy = "order")
     private List<Ticket> tickets;
 }

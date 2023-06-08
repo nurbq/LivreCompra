@@ -2,16 +2,8 @@ package kz.kasky.cinemaroom.models.entities;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "roles")
 public class Role {
 
@@ -24,6 +16,30 @@ public class Role {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private UserEntity userEntity;
 
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public UserEntity getUser() {
+        return userEntity;
+    }
+
+    public void setUser(UserEntity userEntity) {
+        this.userEntity = userEntity;
+    }
 }

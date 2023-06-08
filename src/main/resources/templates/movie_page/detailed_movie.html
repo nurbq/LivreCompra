@@ -34,10 +34,7 @@
             <td th:text="${schedule.startTime}"></td>
             <td th:text="${schedule.finishTime}"></td>
             <td>
-                <a class="btn btn-primary" th:href="@{/schedules/{scheduleId}(scheduleId=${schedule.id})}">Details</a>
-            </td>
-            <td>
-                <a class="btn btn-primary" th:href="@{/schedules/{scheduleId}/edit(scheduleId=${schedule.id})}">Edit</a>
+                <a class="btn btn-primary" th:href="@{/movie/{movieId}/schedule/{scheduleId}/order(movieId=${movie.id},scheduleId=${schedule.id})}">Buy a ticket</a>
             </td>
         </tr>
         </tbody>

@@ -3,7 +3,7 @@ package kz.kasky.cinemaroom.controllers;
 
 import jakarta.validation.Valid;
 import kz.kasky.cinemaroom.models.dto.RegistrationDto;
-import kz.kasky.cinemaroom.models.entities.User;
+import kz.kasky.cinemaroom.models.entities.UserEntity;
 import kz.kasky.cinemaroom.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,10 +41,10 @@ public class AuthController {
     public String getRegisterForm(@Valid @ModelAttribute("user") RegistrationDto user,
                                   BindingResult result, Model model) {
 
-        User existingUser = userService.findByUsername(user.getUserName());
+        UserEntity existingUser = userService.findByUsername(user.getUserName());
 
 
-        if (existingUser != null && existingUser.getUserName() != null) {
+        if (existingUser != null && existingUser.getUsername() != null) {
             return "redirect:/register?fail";
         }
 

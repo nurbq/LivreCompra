@@ -3,44 +3,44 @@ package kz.kasky.cinemaroom.services;
 
 import kz.kasky.cinemaroom.models.dto.RegistrationDto;
 import kz.kasky.cinemaroom.models.entities.Role;
-import kz.kasky.cinemaroom.models.entities.User;
+import kz.kasky.cinemaroom.models.entities.UserEntity;
 import kz.kasky.cinemaroom.repositories.RoleRepository;
 import kz.kasky.cinemaroom.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
-
 @Service
+@AllArgsConstructor
 public class UserService {
 
     private UserRepository userRepository;
     private RoleRepository roleRepository;
+    private PasswordEncoder passwordEncoder;
 
-    @Autowired
-    public UserService(UserRepository userRepository, RoleRepository roleRepository) {
-        this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
-    }
+
+
 
     public void saveUser(RegistrationDto registrationDto) {
-        User user = new User();
+        UserEntity userEntity = new UserEntity();
 
-        user.setUserName(registrationDto.getUserName());
-        user.setPassword(registrationDto.getPassword());
+        userEntity.setUsername(registrationDto.getUserName());
+        userEntity.setPassword(passwordEncoder.encode(registrationDto.getPassword()));
 
         Role role = new Role();
         role.setName("USER");
-        role.setUser(user);
+        role.setUser(userEntity);
 
 
-        userRepository.save(user);
+        userRepository.save(userEntity);
         roleRepository.save(role);
 
     }
 
-    public User findByUsername(String userName) {
+    public UserEntity findByUsername(String userName) {
 
-        return userRepository.findByUserName(userName);
+        return userRepository.findFirstByUsername(userName);
     }
+
+
 }

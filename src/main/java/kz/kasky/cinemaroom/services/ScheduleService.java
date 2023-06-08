@@ -64,6 +64,11 @@ public class ScheduleService {
 
     }
 
+
+    public ScheduleDto getScheduleById(Integer id) {
+        return mapToScheduleDto(scheduleRepository.findById(id).get());
+    }
+
     public List<ScheduleDto> getScheduleByMovieId(Integer movieId) {
         return scheduleRepository.getSchedulesByMovieId(movieId).stream()
                 .map(this::mapToScheduleDto)

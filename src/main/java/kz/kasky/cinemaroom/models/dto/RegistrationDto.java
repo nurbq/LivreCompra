@@ -17,6 +17,7 @@ public class RegistrationDto {
     private Integer id;
     @NotEmpty
     @NotBlank
+
     private String userName;
     @NotEmpty
     @NotBlank
