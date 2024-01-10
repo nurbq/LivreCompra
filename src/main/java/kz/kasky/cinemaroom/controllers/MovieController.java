@@ -63,7 +63,7 @@ public class MovieController {
             return "movie_page/movies_create";
         }
 
-        movieService.saveMovie(movieDto);
+        Integer id = movieService.saveMovie(movieDto);
         return "redirect:/movies";
     }
 
@@ -85,7 +85,7 @@ public class MovieController {
             return "movie_page/movies_edit";
         }
 
-        movieService.updateMovie(id, movieDto);
+        String name  = movieService.updateMovie(id, movieDto);
 
         return "redirect:/movies";
     }

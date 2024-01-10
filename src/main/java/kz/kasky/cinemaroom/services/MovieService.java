@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -19,60 +18,45 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class MovieService {
 
-
     private MovieRepository movieRepository;
-
-
 
     public List<MovieDto> getAllMovie() {
 
-        Iterable<MovieDto> movies = movieRepository.findAll()
+        return movieRepository.findAll()
                 .stream()
                 .map(this::mapToMovieDto)
+                .sorted(Comparator.comparing(MovieDto::getName))
                 .toList();
-
-        List<MovieDto> movieList = new ArrayList<>();
-        movies.forEach(movieList::add);
-        movieList.sort(Comparator.comparing(MovieDto::getName));
-
-
-        return movieList;
     }
 
     public MovieDto getMovieById(Integer id) {
-
-
         Optional<Movie> movie = movieRepository.findById(id);
-
 
         if (movie.isEmpty()) {
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "not found"
             );
         }
-
-
         return mapToMovieDto(movie.get());
     }
 
 
-    public void saveMovie(MovieDto movieDto) {
+    public Integer saveMovie(MovieDto movieDto) {
         Movie movie = mapToMovie(movieDto);
 
-        movieRepository.save(movie);
+        return movieRepository.save(movie).getId();
     }
 
-    public void updateMovie(Integer id, MovieDto movieDto) {
+    public String updateMovie(Integer id, MovieDto movieDto) {
         Movie movie = movieRepository.findById(id).get();
 
         movie.setName(movieDto.getName());
         movie.setGenre(movieDto.getGenre());
         movie.setDescription(movieDto.getDescription());
 
-        movieRepository.save(movie);
+        String name = movieRepository.save(movie).getName();
+        return name;
     }
-
-
 
 
     public void deleteMovie(Integer id) {
@@ -88,8 +72,7 @@ public class MovieService {
     }
 
 
-    public Movie mapToMovie(MovieDto movieDto) {
-
+    private Movie mapToMovie(MovieDto movieDto) {
         Movie movie = new Movie();
         movie.setName(movieDto.getName());
         movie.setGenre(movieDto.getGenre());
@@ -101,9 +84,7 @@ public class MovieService {
     }
 
 
-    public MovieDto mapToMovieDto(Movie movie) {
-
-
+    private MovieDto mapToMovieDto(Movie movie) {
         return MovieDto.builder()
                 .id(movie.getId())
                 .name(movie.getName())
@@ -113,7 +94,6 @@ public class MovieService {
                 .movieTheaters(movie.getMovieTheaters())
                 .build();
     }
-
 
 
 }

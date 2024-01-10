@@ -90,7 +90,7 @@ public class MovieTheaterController {
             return "movie_theatres_page/movie-theatres-edit";
         }
 
-        movieTheaterService.updateMovie(id, movieTheaterDto);
+        String name = movieTheaterService.updateMovie(id, movieTheaterDto);
 
         return "redirect:/movieTheatres";
     }

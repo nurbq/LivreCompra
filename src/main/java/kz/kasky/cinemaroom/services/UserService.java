@@ -37,9 +37,9 @@ public class UserService {
 
     }
 
-    public UserEntity findByUsername(String userName) {
+    public UserEntity findByUsername(String username) {
 
-        return userRepository.findFirstByUsername(userName);
+        return userRepository.findFirstByUsername(username);
     }
 
 

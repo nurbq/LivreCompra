@@ -1,7 +1,6 @@
 package kz.kasky.cinemaroom.services;
 
 
-import kz.kasky.cinemaroom.models.dto.MovieDto;
 import kz.kasky.cinemaroom.models.dto.ScheduleDto;
 import kz.kasky.cinemaroom.models.entities.Movie;
 import kz.kasky.cinemaroom.models.entities.MovieTheater;
@@ -9,6 +8,7 @@ import kz.kasky.cinemaroom.models.entities.Schedule;
 import kz.kasky.cinemaroom.repositories.MovieRepository;
 import kz.kasky.cinemaroom.repositories.MovieTheaterRepository;
 import kz.kasky.cinemaroom.repositories.ScheduleRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class ScheduleService {
 
 
@@ -25,32 +26,22 @@ public class ScheduleService {
     private final MovieTheaterRepository movieTheaterRepository;
 
 
-    public ScheduleService(ScheduleRepository scheduleRepository, MovieRepository movieRepository, MovieTheaterRepository movieTheaterRepository) {
-        this.scheduleRepository = scheduleRepository;
-        this.movieRepository = movieRepository;
-        this.movieTheaterRepository = movieTheaterRepository;
-    }
-
     public List<ScheduleDto> getAllSchedules() {
-
         return scheduleRepository.findAll().stream()
                 .map(this::mapToScheduleDto)
                 .toList();
     }
 
 
-    public void createSchedule(ScheduleDto scheduleDto) {
-
+    public Integer createSchedule(ScheduleDto scheduleDto) {
         Optional<MovieTheater> movieTheater = movieTheaterRepository.findById(scheduleDto.getMovieTheater().getId());
         Optional<Movie> movie = movieRepository.findById(scheduleDto.getMovie().getId());
-
 
         if (movieTheater.isEmpty()) {
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "Movie Theater not found"
             );
         }
-
         if (movie.isEmpty()) {
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "Movie not found"
@@ -59,9 +50,7 @@ public class ScheduleService {
 
         Schedule schedule = mapToSchedule(scheduleDto);
 
-
-        scheduleRepository.save(schedule);
-
+        return scheduleRepository.save(schedule).getId();
     }
 
 
