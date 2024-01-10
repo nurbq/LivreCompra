@@ -52,7 +52,6 @@ public class ScheduleController {
         model.addAttribute("movieTheatres", movieTheaterDtoList);
         model.addAttribute("schedule", new ScheduleDto());
 
-
         return "schedules_page/schedule-create";
     }
 
@@ -60,17 +59,11 @@ public class ScheduleController {
     @PostMapping("/create")
     public String saveTicket(@Valid @ModelAttribute("schedule") ScheduleDto scheduleDto,
                              BindingResult bindingResult, Model model) {
-
-        scheduleService.createSchedule(scheduleDto);
-
+        Integer id = scheduleService.createSchedule(scheduleDto);
         if (bindingResult.hasErrors()) {
             model.addAttribute("schedule", scheduleDto);
             return "schedules_page/schedule-create";
         }
-
-
-
-
         return "redirect:/schedules";
     }
 }

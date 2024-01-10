@@ -1,11 +1,17 @@
 package kz.kasky.cinemaroom.models.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "movie_detail")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class MovieDetail {
 
     @Id
@@ -22,44 +28,4 @@ public class MovieDetail {
 
     @OneToOne(mappedBy = "movieDetail")
     private Movie movie;
-
-    public Movie getMovie() {
-        return movie;
-    }
-
-    public void setMovie(Movie movieDetail) {
-        this.movie = movieDetail;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getDuration() {
-        return duration;
-    }
-
-    public void setDuration(Integer duration) {
-        this.duration = duration;
-    }
-
-    public LocalDateTime getPremiereDate() {
-        return premiereDate;
-    }
-
-    public void setPremiereDate(LocalDateTime premiereDate) {
-        this.premiereDate = premiereDate;
-    }
-
-    public String getDirector() {
-        return director;
-    }
-
-    public void setDirector(String director) {
-        this.director = director;
-    }
 }

@@ -1,6 +1,5 @@
 package kz.kasky.cinemaroom.configs;
 
-import kz.kasky.cinemaroom.services.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -15,7 +14,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    private CustomUserDetailsService customUserDetailsService;
+    private final CustomUserDetailsService customUserDetailsService;
 
     public SecurityConfig(CustomUserDetailsService customUserDetailsService) {
         this.customUserDetailsService = customUserDetailsService;
@@ -42,7 +41,6 @@ public class SecurityConfig {
         builder.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
 
     }
-
 
     @Bean
     public PasswordEncoder passwordEncoder() {
