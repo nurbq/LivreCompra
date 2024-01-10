@@ -14,33 +14,33 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class SecurityConfig {
 
-//    private final CustomUserDetailsService customUserDetailsService;
-//
-//    public SecurityConfig(CustomUserDetailsService customUserDetailsService) {
-//        this.customUserDetailsService = customUserDetailsService;
-//    }
-//
-//    @Bean
-//    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-//        httpSecurity
-//                .authorizeHttpRequests((request) -> request
-//                        .requestMatchers("/register", "/register/*", "/login", "/movies").permitAll()
-//                        .requestMatchers("/movies/form/", "/movieTheatres/form").hasRole("ADMIN")
-//                        .anyRequest().authenticated()
-//                ).formLogin((form) -> form.loginPage("/login")
-//                        .failureUrl("/login?error=true")
-//                        .defaultSuccessUrl("/movies")
-//                        .permitAll())
-//                .logout((logout) -> logout.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll());
-//
-//
-//        return httpSecurity.build();
-//    }
-//
-//    public void configure(AuthenticationManagerBuilder builder) throws Exception {
-//        builder.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
-//
-//    }
+    private final CustomUserDetailsService customUserDetailsService;
+
+    public SecurityConfig(CustomUserDetailsService customUserDetailsService) {
+        this.customUserDetailsService = customUserDetailsService;
+    }
+
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity
+                .authorizeHttpRequests((request) -> request
+                        .requestMatchers("/register", "/register/*", "/login", "/movies").permitAll()
+                        .requestMatchers("/movies/form/", "/movieTheatres/form").hasRole("ADMIN")
+                        .anyRequest().authenticated()
+                ).formLogin((form) -> form.loginPage("/login")
+                        .failureUrl("/login?error=true")
+                        .defaultSuccessUrl("/movies")
+                        .permitAll())
+                .logout((logout) -> logout.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll());
+
+
+        return httpSecurity.build();
+    }
+
+    public void configure(AuthenticationManagerBuilder builder) throws Exception {
+        builder.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
+
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
