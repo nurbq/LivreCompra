@@ -42,7 +42,7 @@ public class TicketService {
     }
 
     public void saveTicket(TicketDto ticketDto) {
-        Ticket ticket = mapToTicket(ticketDto);/
+        Ticket ticket = mapToTicket(ticketDto);
         ticketRepository.save(ticket);
     }
 
