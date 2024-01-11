@@ -5,42 +5,36 @@ import jakarta.validation.Valid;
 import kz.kasky.cinemaroom.models.dto.MovieDto;
 import kz.kasky.cinemaroom.models.dto.MovieTheaterDto;
 import kz.kasky.cinemaroom.models.dto.ScheduleDto;
-import kz.kasky.cinemaroom.models.dto.TicketDto;
 import kz.kasky.cinemaroom.services.MovieService;
 import kz.kasky.cinemaroom.services.MovieTheaterService;
 import kz.kasky.cinemaroom.services.ScheduleService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
 @Controller
 @RequestMapping("/schedules")
+@RequiredArgsConstructor
 public class ScheduleController {
 
     private final ScheduleService scheduleService;
     private final MovieService movieService;
     private final MovieTheaterService movieTheaterService;
 
-
-    public ScheduleController(ScheduleService scheduleService, MovieService movieService, MovieTheaterService movieTheaterService) {
-        this.scheduleService = scheduleService;
-        this.movieService = movieService;
-        this.movieTheaterService = movieTheaterService;
-    }
-
     @GetMapping
     public String allSchedules(Model model) {
-
         List<ScheduleDto> scheduleDtos = scheduleService.getAllSchedules();
-
         model.addAttribute("schedules", scheduleDtos);
 
         return "schedules_page/schedule-list";
     }
-
 
 
     @GetMapping("/create")

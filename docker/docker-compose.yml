@@ -1,0 +1,12 @@
+version: '3.9'
+name: movie_db
+services:
+  movie_db:
+    image: 'postgres:latest'
+    container_name: 'livreCompra_db'
+    environment:
+      - 'POSTGRES_DB=movie_db'
+      - 'POSTGRES_PASSWORD=secretPass'
+      - 'POSTGRES_USER=api-user'
+    ports:
+      - '9999:5432'
