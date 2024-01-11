@@ -26,7 +26,6 @@ public class MovieTheaterController {
         this.scheduleService = scheduleService;
     }
 
-
     @GetMapping
     public String getAllMovieTheatres(Model model) {
         List<MovieTheaterDto> movieTheaterDtoList = movieTheaterService.getAllMovieTheater();
@@ -35,8 +34,6 @@ public class MovieTheaterController {
 
         return "movie_theatres_page/movie-theatres-list";
     }
-
-
 
     @GetMapping(path = "/{id}")
     public String getMovieTheaterById(@PathVariable("id") Integer id, Model model) {
@@ -49,7 +46,6 @@ public class MovieTheaterController {
         return "movie_theatres_page/detailed-movie-theater";
     }
 
-
     @GetMapping("/form")
     public String createMovieTheaterForm(Model model) {
         MovieTheater movieTheater = new MovieTheater();
@@ -60,14 +56,10 @@ public class MovieTheaterController {
     @PostMapping("/save")
     public String saveMovie(@Valid @ModelAttribute("movieTheater") MovieTheaterDto movieTheaterDto,
                             BindingResult bindingResult, Model model) {
-
-
-
         if (bindingResult.hasErrors()) {
             model.addAttribute("movieTheater", movieTheaterDto);
             return "movie_theatres_page/movie-theatres-create";
         }
-
         movieTheaterService.saveMovie(movieTheaterDto);
         return "redirect:/movieTheatres";
     }
@@ -75,9 +67,7 @@ public class MovieTheaterController {
     @GetMapping("/{movieTheaterId}/edit")
     public String editMovieForm(@PathVariable("movieTheaterId") Integer id, Model model) {
         MovieTheaterDto movieTheaterDto = movieTheaterService.getMovieTheaterById(id);
-
         model.addAttribute("movieTheater", movieTheaterDto);
-
         return "movie_theatres_page/movie-theatres-edit";
     }
 
@@ -85,22 +75,17 @@ public class MovieTheaterController {
     public String updateMovie(@PathVariable("movieTheaterId") Integer id,
                               @Valid @ModelAttribute("movie") MovieTheaterDto movieTheaterDto,
                               BindingResult result) {
-
         if (result.hasErrors()) {
             return "movie_theatres_page/movie-theatres-edit";
         }
 
         String name = movieTheaterService.updateMovie(id, movieTheaterDto);
-
         return "redirect:/movieTheatres";
     }
 
     @GetMapping("/{movieTheaterId}/delete")
     public String deleteMovieForm(@PathVariable("movieTheaterId") Integer id) {
         movieTheaterService.deleteMovie(id);
-
         return "redirect:/movieTheatres";
     }
-
-
 }

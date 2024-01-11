@@ -25,7 +25,7 @@ public class SecurityConfig {
         httpSecurity
                 .authorizeHttpRequests((request) -> request
                         .requestMatchers("/register", "/register/*", "/login", "/movies").permitAll()
-                        .requestMatchers("/movies/form/", "/movieTheatres/form").hasRole("ADMIN")
+                        .requestMatchers("/movies/form", "/movieTheatres/form").hasAuthority("ADMIN")
                         .anyRequest().authenticated()
                 ).formLogin((form) -> form.loginPage("/login")
                         .failureUrl("/login?error=true")
