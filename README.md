@@ -1,5 +1,5 @@
 # LivreCompra
-Spring boot backend application for cinema theatres. This project was created to learn to create Spring boot MVC application with database and Hibernate.
+Spring boot backend application for cinema theatres. This project was created in order to learn how to create a Spring boot MVC application with a database and hibernation.
 
 # Technologies
 * Spring Boot Mvc 3+
